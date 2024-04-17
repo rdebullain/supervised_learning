@@ -40,7 +40,7 @@ def generate_data(num_samples=1000, radius=1.1, noise=0.3, random_seed=42):
     return np.hstack([X, y.reshape(-1, 1)])
 
 
-def plot_boundaries(X, y, degree=1, modeltype="lr"):
+def plot_boundaries(X, y, degree=1, modeltype="lr", neighbors=1):
     """
     Plots a decision boundary plot for a polynomial logistic regression
 
@@ -53,7 +53,7 @@ def plot_boundaries(X, y, degree=1, modeltype="lr"):
     if modeltype == "lr":
         model = make_pipeline(PolynomialFeatures(degree=degree), LogisticRegression())
     if modeltype == "knn":
-        model = KNeighborsClassifier(n_neighbors=1)
+        model = KNeighborsClassifier(n_neighbors=neighbors)
     model.fit(X, y)
 
     # get the minimum and maximum values of each feature
